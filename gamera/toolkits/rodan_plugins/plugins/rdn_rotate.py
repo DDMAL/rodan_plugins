@@ -28,7 +28,7 @@ class rdn_rotate(PluginFunction):
 
 
 class RodanRotatePluginGenerator(PluginModule):
-    category = "rotating"
+    category = "Rotation"
     cpp_headers = []
     functions = [rdn_rotate]
     author = "Anton Khelou"

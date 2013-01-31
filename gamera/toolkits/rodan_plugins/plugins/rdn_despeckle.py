@@ -24,7 +24,7 @@ class rdn_despeckle(PluginFunction):
 
 
 class RodanDespecklePluginGenerator(PluginModule):
-    category = "despeckling"
+    category = "Despeckling"
     cpp_headers = []
     functions = [rdn_despeckle]
     author = "Anton Khelou"

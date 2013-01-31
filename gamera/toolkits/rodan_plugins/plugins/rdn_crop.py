@@ -24,7 +24,7 @@ class rdn_crop(PluginFunction):
 
 
 class RodanCropPluginGenerator(PluginModule):
-    category = "cropping"
+    category = "Cropping"
     cpp_headers = []
     functions = [rdn_crop]
     author = "Andrew Hankinson"
