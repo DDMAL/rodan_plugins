@@ -3,7 +3,7 @@ from gamera.args import ImageType, Args, Int
 from gamera.enums import ALL
 
 
-class crop(PluginFunction):
+class rdn_crop(PluginFunction):
     """
         A thin wrapper around subimage() to get the
         desired cropping behaviour for Rodan.
@@ -17,16 +17,17 @@ class crop(PluginFunction):
     args = Args([Int("ulx"), Int("uly"), Int("lrx"), Int("lry")])
 
     def __call__(self, ulx, uly, lrx, lry):
-        return self.subimage((ulx, uly), (lrx, lry))
+        #added '- 1' to lower right point coordinates because gamera subimage goes 1 pixel over.
+        return self.subimage((ulx, uly), (lrx - 1, lry - 1))
 
     __call__ = staticmethod(__call__)
 
 
-class CropPluginGenerator(PluginModule):
-    category = "Cropping"
+class RodanCropPluginGenerator(PluginModule):
+    category = "cropping"
     cpp_headers = []
-    functions = [crop]
+    functions = [rdn_crop]
     author = "Andrew Hankinson"
     url = "http://ddmal.music.mcgill.ca"
 
-module = CropPluginGenerator()
+module = RodanCropPluginGenerator()
