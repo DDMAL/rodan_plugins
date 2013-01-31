@@ -5,11 +5,12 @@ from gamera.enums import ALL
 
 class rdn_rotate(PluginFunction):
     """
-        A thin wrapper around subimage() to get the
-        desired cropping behaviour for Rodan.
+        A thin wrapper around rotate() to get the
+        desired rotate behaviour for Rodan.
 
-        See http://gamera.sourceforge.net/doc/html/utility.html#subimage
-        for more info on why this is necessary.
+        The rotate function in gamera will be executed even
+        if an angle value of 0 is passed in, which we want
+        to avoid.
     """
     pure_python = 1
     self_type = ImageType(ALL)
