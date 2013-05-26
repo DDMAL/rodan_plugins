@@ -20,10 +20,35 @@ class rdn_crop(PluginFunction):
         if imw is None:
             scale_factor = 1
         else:
-            scale_factor = self.ncols / imw
+            scale_factor = float(self.ncols) / float(imw)
 
         #added '- 1' to lower right point coordinates because gamera subimage goes 1 pixel over.
-        return self.subimage((scale_factor * ulx, scale_factor * uly), (scale_factor * lrx - 1, scale_factor * lry - 1))
+        arg_ulx = scale_factor * ulx
+        arg_uly = scale_factor * uly
+        arg_lrx = scale_factor * lrx - 1
+        arg_lry = scale_factor * lry - 1
+
+        if arg_ulx < 0:
+            arg_ulx = 0
+        if arg_ulx > self.ncols:
+            arg_ulx = self.ncols
+
+        if arg_lrx < 0:
+            arg_lrx = 0
+        if arg_lrx > (self.ncols - 1):
+            arg_lrx = self.ncols - 1
+
+        if arg_uly < 0:
+            arg_uly = 0
+        if arg_uly > self.nrows:
+            arg_uly = self.nrows
+
+        if arg_lry < 0:
+            arg_lry = 0
+        if arg_lry > (self.nrows - 1):
+            arg_lry = self.nrows - 1
+
+        return self.subimage((arg_ulx, arg_uly), (arg_lrx, arg_lry))
 
     __call__ = staticmethod(__call__)
 
