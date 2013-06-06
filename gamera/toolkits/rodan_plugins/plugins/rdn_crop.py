@@ -16,8 +16,8 @@ class rdn_crop(PluginFunction):
     return_type = ImageType(ALL)
     args = Args([Int("ulx"), Int("uly"), Int("lrx"), Int("lry"), Int("imw")])
 
-    def __call__(self, ulx, uly, lrx, lry, imw=None):
-        if imw is None:
+    def __call__(self, ulx, uly, lrx, lry, imw=0):
+        if imw is 0:
             scale_factor = 1
         else:
             scale_factor = float(self.ncols) / float(imw)
