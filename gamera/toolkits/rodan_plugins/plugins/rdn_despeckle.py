@@ -9,15 +9,23 @@ class rdn_despeckle(PluginFunction):
         desired despeckling behaviour for Rodan.
 
         Desired behaviour involves returning a gamera Image, rather
-        just applying it to the image that is passed in and returning nothing.
+        just applying it to the image that is passed in and returning nothingm,
+        and also scaling the cc_size, although I'm (Deepanjan) not sure if this works.
     """
     pure_python = 1
     self_type = ImageType(ONEBIT)
     return_type = ImageType(ONEBIT)
-    args = Args([Int('cc_size', range=(1, 100))])
+    args = Args([Int('cc_size', range=(1, 100)), Int('image_width')])
 
-    def __call__(self, cc_size):
-        self.despeckle(cc_size)
+    def __call__(self, cc_size, image_width=0):
+
+        if image_width == 0:
+            scale_factor = 1
+        else:
+            scale_factor = float(self.ncols) / float(image_width)
+
+        print "effective cc size = " + str(int(cc_size*scale_factor))
+        self.despeckle(int(cc_size*scale_factor))
         return self
 
     __call__ = staticmethod(__call__)
