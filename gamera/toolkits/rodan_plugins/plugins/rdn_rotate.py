@@ -1,5 +1,5 @@
 from gamera.plugin import PluginFunction, PluginModule
-from gamera.args import ImageType, Args, Int
+from gamera.args import ImageType, Args, Real
 from gamera.enums import ALL
 
 
@@ -15,7 +15,7 @@ class rdn_rotate(PluginFunction):
     pure_python = 1
     self_type = ImageType(ALL)
     return_type = ImageType(ALL)
-    args = Args([Int("angle")])
+    args = Args([Real("angle")])
 
     def __call__(self, angle):
         if angle != 0:
