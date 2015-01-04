@@ -23,6 +23,7 @@ class rdn_despeckle(PluginFunction):
             scale_factor = 1
         else:
             scale_factor = float(self.ncols) / float(image_width)
+        scale_factor = scale_factor * scale_factor
 
         print "effective cc size = " + str(int(cc_size*scale_factor))
         self.despeckle(int(cc_size*scale_factor))
