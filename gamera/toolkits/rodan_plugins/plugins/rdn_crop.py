@@ -22,6 +22,12 @@ class rdn_crop(PluginFunction):
         else:
             scale_factor = float(self.ncols) / float(imw)
 
+        #ensure positive width and height
+        if ulx > lrx:
+            ulx, lrx = lrx, ulx
+        if uly > lry:
+            uly, lry = lry, uly
+
         #added '- 1' to lower right point coordinates because gamera subimage goes 1 pixel over.
         arg_ulx = scale_factor * ulx
         arg_uly = scale_factor * uly
